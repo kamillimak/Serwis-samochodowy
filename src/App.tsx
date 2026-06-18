@@ -253,7 +253,7 @@ export default function App() {
     },
     {
       q: "Gdzie dokładnie znajduje się Wasz warsztat i czy łatwo dojechać?",
-      a: "Nasz warsztat znajduje się w Wojkowicach przy ulicy Wrocławskiej 12A (gmina Żórawina), tuż przy głównej trasie wylotowej z Wrocławia na południe. Dojedziesz do nas błyskawicznie z wrocławskich dzielnic Jagodno, Brochów, Wojszyce czy Ołtaszyn (około 10-15 minut drogi). Bliskość zjazdu z autostrady A4 (węzeł Wrocław Wschód) sprawia, że dojazd z okolicznych miejscowości jest niezwykle wygodny."
+      a: "Nasz warsztat znajduje się w Wojkowicach koło Wrocławia (gmina Żórawina), tuż przy głównej trasie wylotowej z Wrocławia na południe. Dojedziesz do nas błyskawicznie z wrocławskich dzielnic Jagodno, Brochów, Wojszyce czy Ołtaszyn (około 10-15 minut drogi). Bliskość zjazdu z autostrady A4 (węzeł Wrocław Wschód) sprawia, że dojazd z okolicznych miejscowości jest niezwykle wygodny."
     }
   ];
 
@@ -266,7 +266,7 @@ export default function App() {
           <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 text-gray-400">
             <span className="flex items-center gap-1.5 hover:text-white transition-colors">
               <MapPin className="w-3.5 h-3.5 text-brand-orange" />
-              <span>ul. Wrocławska 12A, 55-020 Wojkowice (koło Wrocławia)</span>
+              <span>Wojkowice koło Wrocławia</span>
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-brand-orange" />
@@ -276,11 +276,11 @@ export default function App() {
           <div className="flex items-center gap-4">
             <span className="text-[#a5a5b5] hidden sm:inline">Szukasz zaufanego mechanika?</span>
             <a 
-              href="tel:507563317" 
+              href="tel:123456789" 
               className="flex items-center gap-1.5 font-bold text-brand-orange hover:text-white transition-all bg-[#25252d] px-3 py-1 rounded-full border border-brand-orange/30 hover:border-brand-orange"
             >
               <Phone className="w-3.5 h-3.5 animate-pulse" />
-              <span>Zadzwoń: 507 563 317</span>
+              <span>Zadzwoń: 123 456 789</span>
             </a>
           </div>
         </div>
@@ -321,11 +321,11 @@ export default function App() {
           {/* Desktop Call to Action Button */}
           <div className="hidden lg:block">
             <a 
-              href="tel:507563317" 
+              href="tel:123456789" 
               className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-brand-orange rounded-lg hover:bg-brand-orange-hover hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-brand-orange/15"
               id="cta_header_call"
             >
-              Ustal termin: 507 563 317
+              Ustal termin: 123 456 789
             </a>
           </div>
 
@@ -395,11 +395,11 @@ export default function App() {
                 </a>
                 <div className="pt-2 flex flex-col gap-3">
                   <a 
-                    href="tel:507563317" 
+                    href="tel:123456789" 
                     className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-brand-orange text-white font-bold rounded-lg hover:bg-brand-orange-hover text-center transition-all shadow-md"
                   >
                     <Phone className="w-4 h-4" />
-                    Zadzwoń: 507 563 317
+                    Zadzwoń: 123 456 789
                   </a>
                   <a 
                     href="#calculator" 
@@ -465,12 +465,12 @@ export default function App() {
               {/* Action buttons */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                 <a 
-                  href="tel:507563317" 
+                  href="tel:123456789" 
                   className="px-8 py-4 font-bold text-base text-white bg-brand-orange rounded-xl hover:bg-brand-orange-hover hover:scale-[1.03] active:scale-[0.98] transition-all text-center flex items-center justify-center gap-3 shadow-lg shadow-brand-orange/20"
                   id="hero_cta_call"
                 >
                   <Phone className="w-5 h-5 stroke-[2.5]" />
-                  Zadzwoń: 507 563 317
+                  Zadzwoń: 123 456 789
                 </a>
                 <a 
                   href="#calculator" 
@@ -531,11 +531,11 @@ export default function App() {
                         Potrzebujesz natychmiastowej pomocy? Kliknij poniżej, by połączyć się bezpośrednio:
                       </div>
                       <a 
-                        href="tel:507563317" 
+                        href="tel:123456789" 
                         className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-brand-orange text-white text-sm font-bold rounded-xl hover:bg-brand-orange-hover transition-all"
                       >
                         <Phone className="w-4 h-4" />
-                        507 563 317 - Zadzwoń Teraz
+                        123 456 789 - Zadzwoń Teraz
                       </a>
                       <button 
                         type="button"
@@ -570,7 +570,7 @@ export default function App() {
                               const val = e.target.value.replace(/\D/g, "");
                               setContactPhone(val);
                             }}
-                            placeholder="507 563 317" 
+                            placeholder="123 456 789" 
                             className="w-full bg-[#121214] border border-gray-800 rounded-lg py-2.5 pl-12 pr-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-orange transition-colors"
                           />
                         </div>
@@ -752,7 +752,7 @@ export default function App() {
               </p>
             </div>
             <a 
-              href="tel:507563317" 
+              href="tel:123456789" 
               className="py-3 px-6 bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all shrink-0 flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
@@ -981,8 +981,8 @@ export default function App() {
                     <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-2" />
                     <span className="font-bold text-white block mb-1">Dziękujemy za kontakt!</span>
                     <p className="text-gray-400 mb-3">Zadzwoń bezpośrednio pod numer, by natychmiast uzgodnić dogodny czas!</p>
-                    <a href="tel:507563317" className="block w-full py-2 bg-brand-orange text-white text-xs font-bold rounded hover:bg-brand-orange-hover transition-colors">
-                      Zadzwoń: 507 563 317
+                    <a href="tel:123456789" className="block w-full py-2 bg-brand-orange text-white text-xs font-bold rounded hover:bg-brand-orange-hover transition-colors">
+                      Zadzwoń: 123 456 789
                     </a>
                     <button onClick={resetCalculator} className="text-[10px] underline text-gray-500 mt-2 hover:text-gray-300">
                       Oblicz ponownie
@@ -1221,7 +1221,7 @@ export default function App() {
                     <div>
                       <span className="text-xs uppercase font-bold text-gray-400 block mb-1">Adres Serwisu</span>
                       <p className="font-semibold text-white leading-relaxed">
-                        ul. Wrocławska 12A, 55-020 Wojkowice <br />
+                        Wojkowice koło Wrocławia <br />
                         <span className="text-xs text-brand-orange font-bold uppercase tracking-[0.05em] block mt-1">(gmina Żórawina, tuż pod Wrocławiem)</span>
                       </p>
                     </div>
@@ -1233,8 +1233,8 @@ export default function App() {
                     </div>
                     <div>
                       <span className="text-xs uppercase font-bold text-gray-400 block mb-1">Telefon Kontaktowy</span>
-                      <a href="tel:507563317" className="font-display font-extrabold text-xl md:text-2xl text-white hover:text-brand-orange transition-colors">
-                        507 563 317
+                      <a href="tel:123456789" className="font-display font-extrabold text-xl md:text-2xl text-white hover:text-brand-orange transition-colors">
+                        123 456 789
                       </a>
                       <span className="text-[10px] text-gray-500 block leading-tight mt-1">
                         Szybkie wsparcie po polsku. Kliknij, by połączyć bezpośrednio.
@@ -1277,13 +1277,13 @@ export default function App() {
             <div className="lg:col-span-7 h-full flex flex-col justify-between">
               <div className="bg-[#121214] border border-gray-800 rounded-2xl p-4 flex-grow flex flex-col min-h-[350px] lg:min-h-0 relative shadow-2xl overflow-hidden">
                 <div className="absolute top-4 left-4 bg-[#1e1e24] border border-gray-800 px-3 py-1.5 rounded-lg z-10 shadow">
-                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Wojkowice, ul. Wrocławska 12A</span>
+                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Wojkowice koło Wrocławia</span>
                 </div>
                 
                 {/* Embedded google map search (100% compliant and gorgeous fallback) */}
                 <iframe 
                   className="w-full h-full min-h-[300px] flex-grow rounded-xl border-0"
-                  src="https://maps.google.com/maps?q=ul.%20Wroc%C5%82awska%2012A,%20Wojkowice&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=Wojkowice&t=&z=14&ie=UTF8&iwloc=&output=embed"
                   allowFullScreen={true}
                   loading="lazy"
                   title="Twój Mechanik Wojkowice"
@@ -1293,7 +1293,7 @@ export default function App() {
                 <div className="flex justify-between items-center mt-3 pt-2 text-xs">
                   <span className="text-gray-500">Duża, dogodna przestrzeń parkingowa dla klientów</span>
                   <a 
-                    href="https://maps.google.com/?q=ul.+Wrocławska+12A,+55-020+Wojkowice"
+                    href="https://maps.google.com/?q=Wojkowice"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-orange hover:underline font-bold"
@@ -1360,11 +1360,11 @@ export default function App() {
       {/* 12. BOTTOM STICKY MOBILE CALLING FOOTER (Massive Mobile Conversion Boost) */}
       <div className="fixed bottom-0 inset-x-0 bg-[#1e1e24] border-t border-brand-orange/40 p-3 z-50 lg:hidden flex gap-3 shadow-[0_-8px_24px_rgba(0,0,0,0.5)] animate-slide-up">
         <a 
-          href="tel:507563317" 
+          href="tel:123456789" 
           className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-brand-orange text-white text-sm font-black rounded-xl hover:bg-brand-orange-hover active:scale-[0.98] transition-all"
         >
           <Phone className="w-4 h-4 text-white fill-white animate-bounce" />
-          ZADZWOŃ: 507 563 317
+          ZADZWOŃ: 123 456 789
         </a>
         <a 
           href="#calculator" 
@@ -1422,7 +1422,7 @@ export default function App() {
                 {/* Conversion suggestions buttons */}
                 <div className="space-y-2 pt-1 font-medium">
                   <a 
-                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, chciałbym zapytać o najbliższy wolny termin na sprawdzenie samochodu.")}`}
+                    href={`https://wa.me/48123456789?text=${encodeURIComponent("Dzień dobry, chciałbym zapytać o najbliższy wolny termin na sprawdzenie samochodu.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {
@@ -1436,7 +1436,7 @@ export default function App() {
                   </a>
 
                   <a 
-                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, chciałbym poprosić o darmową, szacunkową wycenę naprawy silnika / hamulców.")}`}
+                    href={`https://wa.me/48123456789?text=${encodeURIComponent("Dzień dobry, chciałbym poprosić o darmową, szacunkową wycenę naprawy silnika / hamulców.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {
@@ -1450,7 +1450,7 @@ export default function App() {
                   </a>
 
                   <a 
-                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, potrzebuję przeprowadzić serwis klimatyzacji / odgrzybianie w Wojkowicach.")}`}
+                    href={`https://wa.me/48123456789?text=${encodeURIComponent("Dzień dobry, potrzebuję przeprowadzić serwis klimatyzacji / odgrzybianie w Wojkowicach.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {
@@ -1468,7 +1468,7 @@ export default function App() {
               {/* Chat action bottom footer */}
               <div className="p-3.5 bg-[#1a1a1f] border-t border-gray-800">
                 <a 
-                  href="https://wa.me/48507563317" 
+                  href="https://wa.me/48123456789" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => {
