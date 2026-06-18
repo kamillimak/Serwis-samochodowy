@@ -115,6 +115,8 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showWhatsappPopup, setShowWhatsappPopup] = useState(false);
+  const [hasUnreadNotification, setHasUnreadNotification] = useState(true);
   
   // Interactive Cost Calculator State
   const [selectedServices, setSelectedServices] = useState<string[]>(["comp-diag"]);
@@ -134,6 +136,28 @@ export default function App() {
 
   // Active Accordion State for FAQs
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    if (id === "") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 90; // offset for sticky header
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   // Auto detect scrolling to show scroll-to-top button
   useEffect(() => {
@@ -267,7 +291,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           
           {/* Logo with mechanical feeling */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <a href="#" onClick={(e) => scrollToSection(e, "")} className="flex items-center gap-2.5 group">
             <div className="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white shadow-lg shadow-brand-orange/20 group-hover:rotate-12 transition-transform duration-300">
               <Wrench className="w-5.5 h-5.5 stroke-[2.5]" />
             </div>
@@ -283,15 +307,15 @@ export default function App() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-300">
-            <a href="#services" className="hover:text-brand-orange transition-colors">Nasze Usługi</a>
-            <a href="#why-choose-us" className="hover:text-brand-orange transition-colors">Dlaczego My</a>
-            <a href="#calculator" className="hover:text-brand-orange transition-colors flex items-center gap-1.5 bg-brand-orange/5 px-3 py-1.5 rounded-md border border-brand-orange/20 text-brand-orange">
+            <a href="#services" onClick={(e) => scrollToSection(e, "services")} className="hover:text-brand-orange transition-colors">Nasze Usługi</a>
+            <a href="#why-choose-us" onClick={(e) => scrollToSection(e, "why-choose-us")} className="hover:text-brand-orange transition-colors">Dlaczego My</a>
+            <a href="#calculator" onClick={(e) => scrollToSection(e, "calculator")} className="hover:text-brand-orange transition-colors flex items-center gap-1.5 bg-brand-orange/5 px-3 py-1.5 rounded-md border border-brand-orange/20 text-brand-orange">
               <Sparkles className="w-3.5 h-3.5" />
               Kalkulator Cen
             </a>
-            <a href="#reviews" className="hover:text-brand-orange transition-colors">Opinie</a>
-            <a href="#faq" className="hover:text-brand-orange transition-colors">FAQ</a>
-            <a href="#contact" className="hover:text-brand-orange transition-colors">Kontakt</a>
+            <a href="#reviews" onClick={(e) => scrollToSection(e, "reviews")} className="hover:text-brand-orange transition-colors">Opinie</a>
+            <a href="#faq" onClick={(e) => scrollToSection(e, "faq")} className="hover:text-brand-orange transition-colors">FAQ</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-brand-orange transition-colors">Kontakt</a>
           </nav>
 
           {/* Desktop Call to Action Button */}
@@ -328,21 +352,21 @@ export default function App() {
               <div className="px-4 py-6 flex flex-col gap-4 text-base font-medium">
                 <a 
                   href="#services" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "services")}
                   className="py-2 hover:text-brand-orange transition-colors border-b border-gray-800"
                 >
                   Nasze Usługi
                 </a>
                 <a 
                   href="#why-choose-us" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "why-choose-us")}
                   className="py-2 hover:text-brand-orange transition-colors border-b border-gray-800"
                 >
                   Dlaczego My
                 </a>
                 <a 
                   href="#calculator" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "calculator")}
                   className="py-2 hover:text-brand-orange transition-colors border-b border-gray-800 flex items-center gap-2 text-brand-orange"
                 >
                   <Sparkles className="w-4 h-4" />
@@ -350,21 +374,21 @@ export default function App() {
                 </a>
                 <a 
                   href="#reviews" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "reviews")}
                   className="py-2 hover:text-brand-orange transition-colors border-b border-gray-800"
                 >
                   Opinie Klientów
                 </a>
                 <a 
                   href="#faq" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "faq")}
                   className="py-2 hover:text-brand-orange transition-colors border-b border-gray-800"
                 >
                   Częste Pytania (FAQ)
                 </a>
                 <a 
                   href="#contact" 
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => scrollToSection(e, "contact")}
                   className="py-2 hover:text-brand-orange transition-colors"
                 >
                   Adres i Kontakt
@@ -379,7 +403,7 @@ export default function App() {
                   </a>
                   <a 
                     href="#calculator" 
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => scrollToSection(e, "calculator")}
                     className="w-full text-center py-3 px-4 bg-transparent text-gray-300 font-semibold rounded-lg border border-gray-700 hover:bg-gray-800 transition-all text-sm"
                   >
                     Szybka Wycena Online
@@ -450,6 +474,7 @@ export default function App() {
                 </a>
                 <a 
                   href="#calculator" 
+                  onClick={(e) => scrollToSection(e, "calculator")}
                   className="px-8 py-4 font-bold text-base text-gray-200 bg-[#1e1e24] rounded-xl hover:bg-gray-800 border border-gray-700 hover:border-gray-500 hover:scale-[1.03] active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-5 h-5 text-brand-orange" />
@@ -699,10 +724,11 @@ export default function App() {
                       {/* Interactive click CTA inside card */}
                       <a 
                         href="#calculator" 
-                        onClick={() => {
+                        onClick={(e) => {
                           if (!selectedServices.includes(service.id)) {
                             setSelectedServices([...selectedServices, service.id]);
                           }
+                          scrollToSection(e, "calculator");
                         }}
                         className="text-center mt-3 py-1.5 px-3 bg-[#25252d] hover:bg-brand-orange hover:text-white transition-colors text-[10px] font-bold text-brand-orange uppercase rounded tracking-wider"
                       >
@@ -1284,7 +1310,7 @@ export default function App() {
           <div className="bg-[#1e1e24] p-6 rounded-2xl border border-gray-800/80 mt-12 text-xs text-gray-500 leading-relaxed text-center max-w-5xl mx-auto">
             <h4 className="font-semibold text-[#a5a5b5] mb-2 font-display text-sm">Twój Lokalny Ekspert Samochodowy Wojkowice · Żórawina · Wrocław Jagodno</h4>
             <p>
-              Nasz warsztat samochodowy <a href="#" className="hover:text-brand-orange">Twój Mechanik</a> świadczy usługi naprawcze, diagnostyczne, blacharskie oraz serwis klimatyzacji dla kierowców z terenów województwa dolnośląskiego. Jesteśmy dumni, że z naszych usług chętnie korzystają mieszkańcy takich miejscowości jak Wojkowice, Żórawina, Iwiny, Karwiany, Suchy Dwór, Siechnice, Radwanice, Święta Katarzyna, Smardzów, Rybińska, Ołtaszyn oraz wrocławskie osiedla Jagodno, Wojszyce i Brochów. Oferujemy rzetelną pomoc, uczciwą pracę i brak ukrytych kosztów na wymianę rozrządu, amortyzatorów, tarcz hamulcowych, naprawy elektryki, a także wymiany płynów eksploatacyjnych w autach osobowych oraz dostawczych. Szybki czas realizacji przy bezkompromisowej dbałości o każdy detal techniczny.
+              Nasz warsztat samochodowy <a href="#" onClick={(e) => scrollToSection(e, "")} className="hover:text-brand-orange">Twój Mechanik</a> świadczy usługi naprawcze, diagnostyczne, blacharskie oraz serwis klimatyzacji dla kierowców z terenów województwa dolnośląskiego. Jesteśmy dumni, że z naszych usług chętnie korzystają mieszkańcy takich miejscowości jak Wojkowice, Żórawina, Iwiny, Karwiany, Suchy Dwór, Siechnice, Radwanice, Święta Katarzyna, Smardzów, Rybińska, Ołtaszyn oraz wrocławskie osiedla Jagodno, Wojszyce i Brochów. Oferujemy rzetelną pomoc, uczciwą pracę i brak ukrytych kosztów na wymianę rozrządu, amortyzatorów, tarcz hamulcowych, naprawy elektryki, a także wymiany płynów eksploatacyjnych w autach osobowych oraz dostawczych. Szybki czas realizacji przy bezkompromisowej dbałości o każdy detal techniczny.
             </p>
           </div>
 
@@ -1310,13 +1336,13 @@ export default function App() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-4 text-gray-400">
-            <a href="#services" className="hover:text-white transition-colors">Nasze Usługi</a>
+            <a href="#services" onClick={(e) => scrollToSection(e, "services")} className="hover:text-white transition-colors">Nasze Usługi</a>
             <span className="hidden md:inline">·</span>
-            <a href="#calculator" className="hover:text-white transition-colors">Kalkulator Cen</a>
+            <a href="#calculator" onClick={(e) => scrollToSection(e, "calculator")} className="hover:text-white transition-colors">Kalkulator Cen</a>
             <span className="hidden md:inline">·</span>
-            <a href="#why-choose-us" className="hover:text-white transition-colors">Dlaczego My</a>
+            <a href="#why-choose-us" onClick={(e) => scrollToSection(e, "why-choose-us")} className="hover:text-white transition-colors">Dlaczego My</a>
             <span className="hidden md:inline">·</span>
-            <a href="#contact" className="hover:text-white transition-colors">Kontakt i Dojazd</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-white transition-colors">Kontakt i Dojazd</a>
           </div>
 
           <div>
@@ -1342,6 +1368,7 @@ export default function App() {
         </a>
         <a 
           href="#calculator" 
+          onClick={(e) => scrollToSection(e, "calculator")}
           className="flex-1 flex items-center justify-center gap-1.5 py-3.5 bg-transparent border border-gray-700 text-gray-200 text-xs font-bold rounded-xl"
         >
           <Sparkles className="w-3.5 h-3.5 text-brand-orange" />
@@ -1349,10 +1376,153 @@ export default function App() {
         </a>
       </div>
 
+      {/* 13. FLOATING WHATSAPP CHAT BUTTON & WINDOW */}
+      <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 flex flex-col items-end gap-3">
+        <AnimatePresence>
+          {showWhatsappPopup && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 15 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
+              className="bg-[#1e1e24] w-[calc(100vw-32px)] sm:w-80 md:w-96 rounded-2xl border border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden mb-2 text-left"
+            >
+              {/* Header block with company branding */}
+              <div className="bg-[#1a1a1f] p-4 border-b border-gray-800 flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-[#25D366]/15 rounded-full flex items-center justify-center text-[#25D366]">
+                    <svg className="w-5.5 h-5.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12.008.01C5.397.01.06 5.348.06 12.01c0 2.097.547 4.142 1.588 5.946L0 24l6.164-1.687c1.751.955 3.719 1.456 5.724 1.457 6.613 0 11.949-5.34 11.953-11.997A11.966 11.966 0 0 0 24 12.01C23.996 5.343 18.656.01 12.008.01zm-.011 21.965c-1.637-.002-3.225-.501-4.825-1.451l-.346-.205-3.593.932.949-3.468-.225-.358c-.873-1.498-1.334-3.195-1.333-4.931C2.602 6.372 7.025 2 12.008 2c2.417.001 4.69.943 6.398 2.651 1.708 1.708 2.648 3.985 2.645 6.402a10.015 10.015 0 0 1-10.054 9.922z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-sm text-white">Twój Mechanik Serwis</h4>
+                    <span className="flex items-center gap-1.5 text-[10px] text-green-400 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                      Wojkowice · Zwykle odpowiada od ręki
+                    </span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setShowWhatsappPopup(false)}
+                  className="p-1 rounded-full text-gray-500 hover:text-white hover:bg-gray-800 transition-colors"
+                  aria-label="Zamknij czat"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Chat Content Body */}
+              <div className="p-4 bg-[#121214] space-y-4 text-xs">
+                <div className="bg-[#1e1e24] p-3 rounded-xl border border-gray-800 text-gray-300 leading-relaxed max-w-[90%]">
+                  Cześć! 🛠️ Szukasz szybkiego terminu, ceny naprawy lub chcesz wycenić serwis klimatyzacji?
+                  <span className="block text-[10px] text-gray-500 mt-1">Wybierz jedno z szybkich zapytań poniżej:</span>
+                </div>
+
+                {/* Conversion suggestions buttons */}
+                <div className="space-y-2 pt-1 font-medium">
+                  <a 
+                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, chciałbym zapytać o najbliższy wolny termin na sprawdzenie samochodu.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setHasUnreadNotification(false);
+                      setShowWhatsappPopup(false);
+                    }}
+                    className="flex items-center justify-between p-2.5 bg-[#1e1e24] hover:bg-brand-orange/10 border border-gray-800 hover:border-brand-orange/30 rounded-lg text-left text-gray-300 hover:text-white transition-colors"
+                  >
+                    <span>📅 Kiedy wolny termin?</span>
+                    <span className="text-[10px] text-brand-orange font-bold">&rarr;</span>
+                  </a>
+
+                  <a 
+                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, chciałbym poprosić o darmową, szacunkową wycenę naprawy silnika / hamulców.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setHasUnreadNotification(false);
+                      setShowWhatsappPopup(false);
+                    }}
+                    className="flex items-center justify-between p-2.5 bg-[#1e1e24] hover:bg-brand-orange/10 border border-gray-800 hover:border-brand-orange/30 rounded-lg text-left text-gray-300 hover:text-white transition-colors"
+                  >
+                    <span>💰 Chcę bezpłatną wycenę</span>
+                    <span className="text-[10px] text-brand-orange font-bold">&rarr;</span>
+                  </a>
+
+                  <a 
+                    href={`https://wa.me/48507563317?text=${encodeURIComponent("Dzień dobry, potrzebuję przeprowadzić serwis klimatyzacji / odgrzybianie w Wojkowicach.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setHasUnreadNotification(false);
+                      setShowWhatsappPopup(false);
+                    }}
+                    className="flex items-center justify-between p-2.5 bg-[#1e1e24] hover:bg-brand-orange/10 border border-gray-800 hover:border-brand-orange/30 rounded-lg text-left text-gray-300 hover:text-white transition-colors"
+                  >
+                    <span>❄️ Serwis klimatyzacji</span>
+                    <span className="text-[10px] text-brand-orange font-bold">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Chat action bottom footer */}
+              <div className="p-3.5 bg-[#1a1a1f] border-t border-gray-800">
+                <a 
+                  href="https://wa.me/48507563317" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    setShowWhatsappPopup(false);
+                    setHasUnreadNotification(false);
+                  }}
+                  className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba56] text-white font-bold rounded-xl transition-all text-center flex items-center justify-center gap-2 group text-xs shadow-lg shadow-[#25D366]/15"
+                >
+                  <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.008.01C5.397.01.06 5.348.06 12.01c0 2.097.547 4.142 1.588 5.946L0 24l6.164-1.687c1.751.955 3.719 1.456 5.724 1.457 6.613 0 11.949-5.34 11.953-11.997A11.966 11.966 0 0 0 24 12.01C23.996 5.343 18.656.01 12.008.01zm-.011 21.965c-1.637-.002-3.225-.501-4.825-1.451l-.346-.205-3.593.932.949-3.468-.225-.358c-.873-1.498-1.334-3.195-1.333-4.931C2.602 6.372 7.025 2 12.008 2c2.417.001 4.69.943 6.398 2.651 1.708 1.708 2.648 3.985 2.645 6.402a10.015 10.015 0 0 1-10.054 9.922z"/>
+                  </svg>
+                  Napisz własną wiadomość
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* The main green floating icon button */}
+        <div className="relative">
+          <button 
+            onClick={() => {
+              setShowWhatsappPopup(!showWhatsappPopup);
+              setHasUnreadNotification(false);
+            }}
+            className="p-4 bg-[#25D366] text-white rounded-full hover:bg-[#20ba56] transition-all shadow-[0_8px_32px_rgba(37,211,102,0.4)] hover:scale-110 active:scale-95 flex items-center justify-center relative z-50 group duration-300"
+            aria-label="Czat przez WhatsApp"
+          >
+            {/* Pulsing indicator ring */}
+            <span className="absolute -inset-1.5 rounded-full border-2 border-[#25D366]/40 animate-ping group-hover:hidden pointer-events-none"></span>
+
+            {/* Notification Badge */}
+            {hasUnreadNotification && (
+              <span className="absolute -top-1 -right-1 bg-brand-orange border-2 border-[#121214] text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center animate-bounce">
+                1
+              </span>
+            )}
+
+            <svg className="w-6.5 h-6.5 fill-current" viewBox="0 0 24 24">
+              <path d="M12.008.01C5.397.01.06 5.348.06 12.01c0 2.097.547 4.142 1.588 5.946L0 24l6.164-1.687c1.751.955 3.719 1.456 5.724 1.457 6.613 0 11.949-5.34 11.953-11.997A11.966 11.966 0 0 0 24 12.01C23.996 5.343 18.656.01 12.008.01zm-.011 21.965c-1.637-.002-3.225-.501-4.825-1.451l-.346-.205-3.593.932.949-3.468-.225-.358c-.873-1.498-1.334-3.195-1.333-4.931C2.602 6.372 7.025 2 12.008 2c2.417.001 4.69.943 6.398 2.651 1.708 1.708 2.648 3.985 2.645 6.402a10.015 10.015 0 0 1-10.054 9.922z"/>
+            </svg>
+            
+            {/* Expandable text tooltip */}
+            <span className="absolute right-16 bg-[#1a1a1f] border border-gray-800 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0 whitespace-nowrap hidden sm:inline-block">
+              Napisz na WhatsApp 💬
+            </span>
+          </button>
+        </div>
+      </div>
+
       {showScrollTop && (
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-20 right-6 z-40 p-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-hover transition-all shadow-lg shadow-brand-orange/20 hidden md:flex items-center justify-center hover:scale-110 active:scale-95"
+          className="fixed bottom-36 md:bottom-24 right-5 md:right-69 z-40 p-3 bg-brand-orange text-white rounded-full hover:bg-brand-orange-hover transition-all shadow-lg shadow-brand-orange/20 hidden md:flex items-center justify-center hover:scale-110 active:scale-95"
           aria-label="Scroll to top"
         >
           <ChevronUp className="w-5 h-5 stroke-[2.5]" />
